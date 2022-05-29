@@ -1,0 +1,4 @@
+﻿  Main.c
+c:\users\ohad\source\repos\project4\project4\main.c(19): warning C4477: 'printf' : format string '%u' requires an argument of type 'unsigned int', but variadic argument 1 has type 'size_t (__cdecl *)(const char *)'
+Classwork8.obj : error LNK2019: unresolved external symbol _getsum referenced in function _sum
+C:\Users\ohad\source\repos\Project4\Debug\Project4.exe : fatal error LNK1120: 1 unresolved externals

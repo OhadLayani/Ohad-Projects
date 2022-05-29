@@ -1,0 +1,10 @@
+﻿  Address.c
+  Main.c
+  Person.c
+c:\users\ohad\source\repos\project2\project2\person.c(12): warning C4013: 'initAdress' undefined; assuming extern returning int
+c:\users\ohad\source\repos\project2\project2\person.c(13): warning C4013: 'print' undefined; assuming extern returning int
+c:\users\ohad\source\repos\project2\project2\person.c(21): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'const char *'
+  Generating Code...
+Person.obj : error LNK2019: unresolved external symbol _initAdress referenced in function _initPerson
+Person.obj : error LNK2019: unresolved external symbol _print referenced in function _initPerson
+C:\Users\ohad\source\repos\Project2\Debug\Project2.exe : fatal error LNK1120: 2 unresolved externals
