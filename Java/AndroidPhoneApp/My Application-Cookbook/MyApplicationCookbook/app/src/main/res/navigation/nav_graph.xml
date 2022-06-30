@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/baseFragment">
+
+    <fragment
+        android:id="@+id/baseFragment"
+        android:name="com.example.myapplication_cookbook.BaseFragment"
+        android:label="fragment_base"
+        tools:layout="@layout/fragment_base" >
+        <action
+            android:id="@+id/action_baseFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.myapplication_cookbook.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_choiceFragmet"
+            app:destination="@id/choiceFragmet" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.myapplication_cookbook.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_choiceFragmet"
+            app:destination="@id/choiceFragmet" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.example.myapplication_cookbook.ActivityFragment"
+        android:label="fragment_activity"
+        tools:layout="@layout/fragment_activity" />
+    <fragment
+        android:id="@+id/choiceFragmet"
+        android:name="com.example.myapplication_cookbook.ChoiceFragmet"
+        android:label="fragment_choice_fragmet"
+        tools:layout="@layout/fragment_choice_fragmet" >
+        <action
+            android:id="@+id/action_choiceFragmet_to_activityFragment"
+            app:destination="@id/activityFragment" />
+        <action
+            android:id="@+id/action_choiceFragmet_to_recipeReadFragment"
+            app:destination="@id/recipeReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeReadFragment"
+        android:name="com.example.myapplication_cookbook.RecipeReadFragment"
+        android:label="fragment_recipe_read"
+        tools:layout="@layout/fragment_recipe_read" >
+        <action
+            android:id="@+id/action_recipeReadFragment_to_activityReadFrag"
+            app:destination="@id/activityReadFrag" />
+        <action
+            android:id="@+id/action_recipeReadFragment_to_activityFragment"
+            app:destination="@id/activityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/activityReadFrag"
+        android:name="com.example.myapplication_cookbook.ActivityReadFrag"
+        android:label="fragment_activity_read"
+        tools:layout="@layout/fragment_activity_read" >
+        <action
+            android:id="@+id/action_activityReadFrag_to_activityFragment"
+            app:destination="@id/activityFragment" />
+    </fragment>
+</navigation>

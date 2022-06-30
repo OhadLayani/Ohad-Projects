@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Application-Cookbook</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="Recipetypes">
+        <item>Dessert</item>
+        <item>Middle eastern</item>
+        <item>Morning</item>
+        <item>Asian</item>
+        <item>Italian</item>
+    </string-array>
+</resources>
