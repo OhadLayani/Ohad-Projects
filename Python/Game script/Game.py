@@ -10,20 +10,34 @@ class bColors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-class person():
-    def __init__(self, atk, df, hp,mp,magic,mdef,name,items):
-        self.atkl = atk-30
-        self.atkh=atk+30
+class Person:
+    def __init__(self, atk, df, hp, mp, magic, mdef, name, items, job):
+        self.atk=atk
+        self.atkl = atk - 30
+        self.atkh = atk + 30
         self.max_hp = hp
         self.hp = hp
-        self.df=df
-        self.mdef=mdef
-        self.max_mp=mp
-        self.mp=mp
-        self.magic=magic
-        self.action=["Attack","Magic","Items"]
-        self.name=name
-        self.items=items
+        self.df = df
+        self.mdef = mdef
+        self.max_mp = mp
+        self.mp = mp
+        self.magic = magic
+        self.action = ["Attack", "Magic", "Items"]
+        self.name = name
+        self.items = items
+        self.job = job  # Assign the job object to the person
+        self.lvl = 1
+        self.exp = 0
+        self.exp_to_lvl = self.lvl * 100
+
+    def getlvl(self):
+        return self.lvl
+
+    def getCurrentexp(self):
+        return self.exp
+
+    def getexpRem(self):
+        return self.exp_to_lvl
 
     def getatk(self):
         return self.atk
@@ -101,32 +115,6 @@ class person():
         return choice
 
 
-    def getenemy_stats(self):
-        hp_bar = ""
-        bar_ticks = (self.hp / self.max_hp) * 100 / 2
-
-        while bar_ticks >= 0:
-            hp_bar += "█"
-            bar_ticks = bar_ticks - 1
-        while len(hp_bar) < 50:
-            hp_bar += " "
-        hp_string = str(self.hp) + "/" + str(self.max_hp)
-        current_hp = ""
-        if len(hp_string) < 9:
-            decreased = 9 - len(hp_string)
-            while decreased > 0:
-                current_hp += " "
-                decreased -= 1
-
-            current_hp += hp_string
-        else:
-            current_hp = hp_string
-
-        print("Name            HP                                    ")
-        print("                          ___________________________________________________ ")
-        print(
-            bColors.BOLD + self.name + ":     ", current_hp, " |" + bColors.FAIL + hp_bar +
-            bColors.ENDC  + "|")
 
     def get_stats(self):
         hp_bar=""
@@ -175,3 +163,34 @@ class person():
         print(
             bColors.BOLD + self.name+":     " ,current_hp, " |" + bColors.OKGREEN + hp_bar +
             bColors.ENDC + bColors.OKBLUE + "|    " ,current_mp, " |" + mp_bar + bColors.ENDC + "|")
+
+
+    def levelup(self):
+     self.max_hp = self.max_hp+self.job.hp
+     self.mp= self.mp+self.job.mp
+     self.df = self.df+self.job.df
+     self.mdef = self.mdef+self.job.mdef
+     self.atk=self.atk+self.job.atk
+     self.exp -= self.lvl*100
+     self.lvl=self.lvl+1
+     self.exp_to_lvl = self.lvl * 100
+
+     print("Level Up!   Your stats have been updated:")
+     print (f"Name: {self.name}"+"\n")
+     print (f"Level: {self.lvl}"+"\n")
+     print(f"Max HP: {self.max_hp} "+"\n")
+     print(f"MP: {self.mp}"+"\n")
+     print(f"Defense: {self.df}"+"\n")
+     print(f"Magic Defense: {self.mdef}"+"\n")
+     print(f"Attack: {self.atk}"+"\n")
+
+
+class job():
+    def __init__(self,name, atk, df, hp,mp,mdef):
+        self.name=name
+        self.atk=atk
+        self.mp = mp
+        self.hp = hp
+        self.df = df
+        self.mdef = mdef
+

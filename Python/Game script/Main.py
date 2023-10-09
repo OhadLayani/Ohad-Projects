@@ -1,8 +1,9 @@
-from GameScript.Game import person,bColors
+from GameScript.Game import Person,job,bColors
 from GameScript.Magic import spell
 import Attack
 from GameScript.inventory import item
-
+from GameScript.Enemy import Enemy
+import MenuLogic
 def main():
     print("\n\n")
 
@@ -36,18 +37,30 @@ def main():
         ,{"Item":HiElixir,"Quantity":1,"type":"Consumable"} ,{"Item":Grenade,"Quantity":3,"type":"Attack"},{"Item":IronArmour,"Quantity":1,"type":"Epuipment"}]
     Player_magic=[Firebolt,Iceshard,LightningBolt,Meteor,CureWounds,Heal]
 
-    player1=person(120,80,700,400,Player_magic,80,"Denzured",Player_items)
-    player2=person(200,130,1200,600,Player_magic,80,"Sigrid ",Player_items)
-    player3=person(180,150,1500,200,Player_magic,80,"Khair   ",Player_items)
-    player4=person(90,100,800,600,Player_magic,80,"Roni    ",Player_items)
+    Class1=job("Summoner",2,3,5,8,5)
+    Class2=job("Cleric",4,5,3,6,5)
+    Class3=job("Occultist",6,4,4,2,3)
+    Class4=job("Witch",1,2,4,10,9)
+
+
+    player1=Person(120,80,700,400,Player_magic,80,"Denzured",Player_items,Class1)
+    player2=Person(200,130,1200,600,Player_magic,80,"Sigrid ",Player_items,Class2)
+    player3=Person(180,150,1500,200,Player_magic,80,"Khair   ",Player_items,Class3)
+    player4=Person(90,100,800,600,Player_magic,80,"Roni    ",Player_items,Class4)
     party=[player1,player2,player3,player4]
 
-    BossMonster=person(300,30,5000,1000,[Firebolt,LightningBolt],10,"BigBoss",[])
-    Henchman1=person(150,10,1000,500,[Firebolt,LightningBolt],10,"Imp",[])
-    Henchman2=person(150,10,1000,500,[Firebolt,LightningBolt],10,"Imp",[])
-    Foes=[BossMonster,Henchman1,Henchman2]
 
-    Attack.combat(party,Foes)
+
+    #Henchman1=Enemy(150,10,10,500,[Firebolt,LightningBolt],10,"Imp",20)
+    #Henchman2=Enemy(150,10,10,500,[Firebolt,LightningBolt],10,"Imp",20)
+    #MiniBoss=Enemy(200,15,25,750,[],15,"Ogre",60)
+   # Foes=[MiniBoss,Henchman1,Henchman2]
+
+
+
+
+
+    MenuLogic.MenuPrint(party)
 
 
 if __name__ == "__main__":
