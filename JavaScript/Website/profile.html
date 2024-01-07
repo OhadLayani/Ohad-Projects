@@ -1,0 +1,264 @@
+<!-- profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('Media/Gradient2Background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        min-height: 200vh; /* Set minimum height to double the viewport height */
+    }
+        .container {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.75); /* Adjust the alpha value (0 to 1) for opacity */
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        padding: 40px;
+        width: 100vw; /* Set width to 100% of viewport width */
+        max-width: 2200px;
+    }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #007BFF;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+        }
+        .toolbar button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .avatar-container {
+            width: 200px; /* Set width to 200px */
+            height: 200px; /* Set height to 200px */
+            margin-right: 20px;
+            position: relative;
+        }
+        .avatar-upload {
+            width: 100%;
+            height: 100%;
+            border: 2px solid #007BFF;
+            border-radius: 0; /* Set border-radius to 0 for a square shape */
+            overflow: hidden;
+            position: relative;
+        }
+        .avatar-upload img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .change-avatar-btn {
+            position: absolute;
+            bottom: 10px; /* Adjusted bottom margin */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            background-color: rgba(192, 192, 192, 0.7); /* Gray tint */
+            border: 1px solid #333; /* Distinct border */
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            display: none; /* Initially hidden */
+        }
+        .avatar-container:hover .avatar-upload img {
+            filter: brightness(80%); /* Adjust brightness on hover */
+        }
+        .avatar-container:hover .change-avatar-btn {
+            display: block; /* Show on hover */
+        }
+        .parentinfo-container{
+            display: inline-flex;
+        }
+        .info-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Add margin to separate from the next container */
+        }
+        .info-container input:not(:focus), .info-container textarea:not(:focus) {
+        background-color: transparent;
+        }
+        .info-box {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+            pointer-events: none; /* Initially, disable text box input */
+        }
+        .additional-container {
+            background-color: rgba(255, 255, 255, 0);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0; /* Adjust margin as needed */
+            padding: 20px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .message-button, .like-button, .edit-button, .save-button {
+            padding: 8px;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .like-counter {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+        #Forums-Activity {
+        font-size: 16px; /* You can adjust the size as needed */
+    }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div>
+            <a href="Homepage.html"><button>Homepage</button></a>
+            <a href="index.html"><button>Forums</button></a>
+        </div>
+        <div></div>
+    </div>
+
+    <div class="container">
+        <h1>User Profile Page</h1>
+
+        <div class="additional-container">
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <div class="avatar-upload" onclick="handleImageUpload()">
+                        <!-- You can use JavaScript to handle image upload -->
+                        <img src="Media/avatar.jpg" alt="Avatar" id="avatar-image">
+                    </div>
+                    <label for="avatar-input" class="change-avatar-btn">Change Avatar</label>
+                    <input type="file" id="avatar-input" style="display: none;" accept="image/*">
+                </div>
+            </div>
+            <div class="parentinfo-container">
+                <div class="info-container">
+                    <div class="info-box">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+
+                    <div class="info-box">
+                        <label for="age">Age:</label>
+                        <input type="text" id="age" placeholder="Enter your age">
+                    </div>
+
+                    <div class="info-box">
+                        <label for="role">Role:</label>
+                        <input type="text" id="role" placeholder="Enter your role">
+                    </div>
+
+                    <div class="info-box">
+                        <label for="description">Description:</label>
+                        <textarea id="description" placeholder="Enter a brief description"></textarea>
+                    </div>
+                </div>
+                <div class="info-container">
+                    <div class="info-box">
+                        <label for="Forums-Activity">Active In:</label>
+                        <textarea id="Forums-Activity" placeholder="Most viewed forums:"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="message-button">Send a Message</button>
+                <button class="like-button" onclick="handleLike()">Like</button>
+                <div class="like-counter" id="like-counter">0 Likes</div>
+                <button class="edit-button" onclick="enableEdit()">Edit</button>
+                <button class="save-button" onclick="saveChanges()" style="display: none;">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let likeCount = 0;
+        let isEditMode = false;
+
+        function handleImageUpload() {
+            const input = document.getElementById('avatar-input');
+            const image = document.getElementById('avatar-image');
+
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        image.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            input.click();
+        }
+
+        function handleLike() {
+            likeCount++;
+            document.getElementById('like-counter').innerText = `${likeCount} Likes`;
+        }
+
+        function enableEdit() {
+            isEditMode = true;
+            const inputs = document.querySelectorAll('.info-container input, .info-container textarea');
+            inputs.forEach(input => {
+                input.style.pointerEvents = 'auto'; // Enable text box input
+            });
+
+            // Toggle visibility of edit and save buttons
+            document.querySelector('.edit-button').style.display = 'none';
+            document.querySelector('.save-button').style.display = 'block';
+        }
+
+        function saveChanges() {
+            isEditMode = false;
+            const inputs = document.querySelectorAll('.info-container input, .info-container textarea');
+            inputs.forEach(input => {
+                input.style.pointerEvents = 'none'; // Disable text box input
+            });
+
+            // Toggle visibility of edit and save buttons
+            document.querySelector('.edit-button').style.display = 'block';
+            document.querySelector('.save-button').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

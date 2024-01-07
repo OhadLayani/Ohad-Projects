@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    @import "https://unpkg.com/open-props";
+
+       .toolbar {
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(to right, #26c5c1, #ccebed);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .toolbar button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .search-button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* Added styles for parent and child containers */
+        .parent-container {
+            display: flex;
+            flex-direction: column;
+            background: url('Media/Gradient2Background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 170vh; /* Full height of the viewport */
+            width: 100vw; /* Full width of the viewport */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .child-container {
+            width: 80%;
+            margin: 0 auto;
+            //border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(169, 169, 169, 0.1); /* Light grey with 70% transparency */
+
+        }
+ .collapsible {
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-6);
+    font-size: var(--font-size-6);
+    color: black;
+    background: transparent; /* Updated default background color to transparent */
+    border: var(--size-2) solid #0E0BC5;
+    padding: var(--size-6) var(--size-12);
+    transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
+    transition: transform 0.1s;
+    position: relative;
+}
+
+.collapsible:hover {
+    color: white;
+    background: #0E0BC5;
+    --y: -10;
+    --scale: 1.1;
+    --border-scale: 1;
+}
+
+.collapsible:active {
+    color: white;
+    background: #0E0BC5;
+    --y: 5%;
+    --scale: 0.9;
+    --border-scale: 0.9, 0.8;
+}
+
+.collapsible:before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--size-3) * -1);
+    border: var(--size-2) solid #0E0BC5;
+    transform: scale(var(--border-scale, 0));
+    transition: transform 0.125s;
+
+    --angle-one: 105deg;
+    --angle-two: 290deg;
+    --spread-one: 30deg;
+    --spread-two: 40deg;
+    --start-one: calc(var(--angle-one) - (var(--spread-one) * 0.5));
+    --start-two: calc(var(--angle-two) - (var(--spread-two) * 0.5));
+    --end-one: calc(var(--angle-one) + (var(--spread-one) * 0.5));
+    --end-two: calc(var(--angle-two) + (var(--spread-two) * 0.5));
+
+    mask: conic-gradient(
+        transparent 0 var(--start-one),
+        white var(--start-one) var(--end-one),
+        transparent var(--end-one) var(--start-two),
+        white var(--start-two) var(--end-two),
+        transparent var(--end-two)
+    );
+
+    z-index: -1;
+}
+        .content-header {
+        font-size: 78px;
+        color: #000000;
+        margin-bottom: 10px; /* Add margin for spacing */
+        }
+
+
+        .faq-independent-button {
+            position: relative;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            width: 60%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+        }
+
+        .faq-independent-button::after {
+            content: "+";
+            position: absolute;
+            right: 12px; /* Adjust the right distance as needed */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .collapsible-content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background: transparent;
+            font-size: 78px;
+            max-height: 0;
+            transition: max-height 0.2s ease-out;
+        }
+        .collapsible.active, .vision-collapsible.active, .solution-collapsible.active, .aboutus-collapsible.active, .faq-independent-button.active {
+            background-color: #007BFF;
+        }
+        .collapsible.active + .collapsible-content,
+        .vision-collapsible.active + .collapsible-content,
+        .solution-collapsible.active + .collapsible-content,
+        .aboutus-collapsible.active + .collapsible-content,
+        .faq-independent-button.active + .collapsible-content {
+            display: block;
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div>
+            <a href="profile.html"><button>Profile</button></a>
+            <a href="index.html"><button>Forums</button></a>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search">
+            <button class="search-button">Search</button>
+        </div>
+        <div>
+            <button>Sign In</button>
+            <button>Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Added parent and child containers -->
+    <div class="parent-container">
+        <div class="child-container">
+            <div class="content-header">
+                <p>Welcome, our vision is:</p>
+                </div>
+                <button class="collapsible">Vision</button>
+
+            <div class="collapsible-content">
+                <p>To create a vast network of friends, all connected by the passion for movement.</p>
+            </div>
+        </div>
+        <div class="child-container">
+            <!-- Content for the second container -->
+            <button class="collapsible">Solution</button>
+            <div class="collapsible-content">
+                <p>Content for Solution...</p>
+            </div>
+        </div>
+        <div class="child-container">
+            <!-- Content for the third container -->
+            <button class="collapsible">About us</button>
+            <div class="collapsible-content">
+                <p>Content for About us...</p>
+            </div>
+        </div>
+        <div class="child-container">
+            <h2>Frequently asked questions</h2>
+            <button class="faq-independent-button">FAQ Section</button>
+            <div class="collapsible-content">
+                <p>Content for FAQ Section...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var coll = document.querySelectorAll(".collapsible, .vision-collapsible, .solution-collapsible, .aboutus-collapsible, .faq-independent-button");
+
+        for (var i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
